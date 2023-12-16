@@ -13,7 +13,7 @@ namespace FileUploadApp.API.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
+        [HttpPost("Upload")]
         public async Task<IActionResult> Upload(IFormFile file, string filename)
         {
             throw new NotImplementedException();
