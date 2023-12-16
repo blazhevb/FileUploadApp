@@ -4,6 +4,9 @@ namespace FileUploadApp.Implementation
 {
     public class FileProcessor : IFileProcessor
     {
-        public FileProcessor() { }
+        public IProcessingResult Process()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

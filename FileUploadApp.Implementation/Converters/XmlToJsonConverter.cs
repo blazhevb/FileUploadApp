@@ -1,17 +1,20 @@
 ﻿using FileUploadApp.Contracts.Converter;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Xml;
 
 namespace FileUploadApp.Implementation.Converters
 {
     public class XmlToJsonConverter : IFileConverter
     {
-        public void Convert()
+
+        public string Convert(Stream fileStream)
         {
-            throw new NotImplementedException();
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load(fileStream);
+
+            string json = JsonConvert.SerializeXmlNode(xmlDoc);
+
+            return json;
         }
     }
 }

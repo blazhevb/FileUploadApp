@@ -8,6 +8,6 @@ namespace FileUploadApp.Contracts.Converter
 {
     public interface IFileConverter
     {
-        void Convert();
+        string Convert(Stream fileStream);
     }
 }
