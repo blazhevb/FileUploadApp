@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileUploadApp.Contracts.Converter
+namespace FileUploadApp.Contracts
 {
-    public interface IFileConverter
+    public interface IProcessingResult
     {
-        void Convert();
     }
 }
