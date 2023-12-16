@@ -9,6 +9,6 @@ namespace FileUploadApp.Contracts.Factory
 {
     public interface IConverterFactory
     {
-        IFileConverter CreateConverter();
+        IFileConverter CreateConverter(string sourceType, string targetType);
     }
 }
