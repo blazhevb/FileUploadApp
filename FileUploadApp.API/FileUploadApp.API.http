@@ -1,6 +1,6 @@
-@FileUploadApp.API_HostAddress = http://localhost:5224
+@FileUploadApp.API_HostAddress = http://localhost:2070
 
-GET {{FileUploadApp.API_HostAddress}}/weatherforecast/
+POST {{FileUploadApp.API_HostAddress}}/FileProcess/
 Accept: application/json
 
 ###
