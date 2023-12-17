@@ -5,9 +5,14 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileUploadApp.API", "FileUploadApp.API\FileUploadApp.API.csproj", "{CE1C820E-8F3A-481D-B5A3-BE9DA1F7110E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUploadApp.Contracts", "FileUploadApp.Contracts\FileUploadApp.Contracts.csproj", "{95B90E99-C6E8-4664-8B21-D6E8546CF8CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileUploadApp.Contracts", "FileUploadApp.Contracts\FileUploadApp.Contracts.csproj", "{95B90E99-C6E8-4664-8B21-D6E8546CF8CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUploadApp.Implementation", "FileUploadApp.Implementation\FileUploadApp.Implementation.csproj", "{06A92459-8581-4076-952A-FA393216A2CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileUploadApp.Implementation", "FileUploadApp.Implementation\FileUploadApp.Implementation.csproj", "{06A92459-8581-4076-952A-FA393216A2CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F613FAB5-5EDA-4293-8678-1ED388C2E91C}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
