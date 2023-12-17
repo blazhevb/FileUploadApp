@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FileUploadApp.Contracts;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FileUploadApp.API.Controllers
 {
@@ -7,16 +8,30 @@ namespace FileUploadApp.API.Controllers
     public class FileProcessController : ControllerBase
     {
         private readonly ILogger<FileProcessController> _logger;
+        private readonly IFileProcessor _fileProcessor;
 
-        public FileProcessController(ILogger<FileProcessController> logger)
+        public FileProcessController(IFileProcessor fileProcessor, ILogger<FileProcessController> logger)
         {
+            _fileProcessor = fileProcessor;
             _logger = logger;
         }
 
         [HttpPost("Upload")]
         public async Task<IActionResult> Upload(IFormFile file, string filename)
         {
-            throw new NotImplementedException();
+            if(file == null || file.Length == 0)
+            {
+                return BadRequest("No file uploaded.");
+            }
+
+            using (var stream = file.OpenReadStream())
+            {
+                stream.Seek(0, SeekOrigin.Begin);
+
+                IProcessingResult result = _fileProcessor.Process(stream, file.FileName, filename);
+            }
+
+            return BadRequest("Not implemented yet.");
         }
     }
 }

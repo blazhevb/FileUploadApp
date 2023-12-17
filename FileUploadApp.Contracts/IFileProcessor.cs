@@ -8,6 +8,6 @@ namespace FileUploadApp.Contracts
 {
     public interface IFileProcessor
     {
-        IProcessingResult Process();
+        IProcessingResult Process(Stream stream, string originalFileName, string paramFileName);
     }
 }
