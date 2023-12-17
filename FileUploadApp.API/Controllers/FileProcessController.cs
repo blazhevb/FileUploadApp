@@ -28,7 +28,7 @@ namespace FileUploadApp.API.Controllers
             {
                 stream.Seek(0, SeekOrigin.Begin);
 
-                IProcessingResult result = _fileProcessor.Process(stream, file.FileName, filename);
+                IProcessingResult result = await _fileProcessor.Process(stream, file.FileName, filename);
             }
 
             return BadRequest("Not implemented yet.");

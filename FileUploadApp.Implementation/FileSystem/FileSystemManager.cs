@@ -14,5 +14,10 @@ namespace FileUploadApp.Implementation.FileSystem
 
             await File.WriteAllTextAsync("", content, Encoding.UTF8);
         }
+
+        public Task SaveFileToDiskAsync(string content, string extension)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

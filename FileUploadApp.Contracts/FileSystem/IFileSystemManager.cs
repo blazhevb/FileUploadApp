@@ -8,6 +8,6 @@ namespace FileUploadApp.Contracts.FileSystem
 {
     public interface IFileSystemManager
     {
-        Task SaveFileToDiskAsync(string content);
+        Task SaveFileToDiskAsync(string content, string extension);
     }
 }
