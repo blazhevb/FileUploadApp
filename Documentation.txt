@@ -1,0 +1,40 @@
+XML-to-JSON Conversion Service
+
+Overview
+This document outlines the use of the XML-to-JSON Conversion Service API. 
+This web application allows clients to upload XML files, which are then 
+processed to convert them into JSON format and saved in a directory on the server. 
+The service supports concurrent processing of multiple files.
+
+1. File Upload Endpoint
+api/FileProcess/Upload
+
+Method: POST
+
+Accepts accepts an XML file for conversion to JSON.
+
+Request parameters:
+file: The XML file to be uploaded.
+filename: Name for the file (optional). If not provided, the system will 
+generate a default name.
+
+Success Response:
+Code: 200
+Response body:
+{
+  "success": true,
+  "errorMessage": null
+}
+
+Error Response:
+Code: 200
+Response body:
+{
+  "success": false,
+  "errorMessage": 'Error message'
+},
+Code: 400
+
+Error Handling
+The application provides error messages in case of invalid 
+XML files, or server errors.
