@@ -8,5 +8,7 @@ namespace FileUploadApp.Contracts
 {
     public interface IProcessingResult
     {
+        bool Success { get; set; }
+        string ErrorMessage { get; set; }
     }
 }
