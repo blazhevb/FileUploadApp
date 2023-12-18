@@ -10,11 +10,18 @@ namespace FileUploadApp.Implementation.Converters
         public string Convert(Stream fileStream)
         {
             var xmlDoc = new XmlDocument();
-            xmlDoc.Load(fileStream);
+            try
+            {
+                xmlDoc.Load(fileStream);
 
-            string json = JsonConvert.SerializeXmlNode(xmlDoc);
+                string json = JsonConvert.SerializeXmlNode(xmlDoc);
 
-            return json;
+                return json;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidDataException("The xml data is invalid or corrupted.");
+            }           
         }
     }
 }

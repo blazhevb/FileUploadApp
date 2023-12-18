@@ -24,14 +24,16 @@ namespace FileUploadApp.API.Controllers
                 return BadRequest("No file uploaded.");
             }
 
+            IProcessingResult result;
+
             using (var stream = file.OpenReadStream())
             {
                 stream.Seek(0, SeekOrigin.Begin);
 
-                IProcessingResult result = await _fileProcessor.Process(stream, file.FileName, filename);
+                result = await _fileProcessor.Process(stream, file.FileName, filename);
             }
-
-            return BadRequest("Not implemented yet.");
+            
+            return Ok(result);
         }
     }
 }

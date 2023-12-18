@@ -22,7 +22,7 @@ namespace FileUploadApp.Implementation.Factory
             var key = Tuple.Create(sourceType, targetType);
             if(_converters.TryGetValue(key, out var createConverter))
             {
-                var converter = createConverter();
+                IFileConverter converter = createConverter();
                 
                 return converter;
             }

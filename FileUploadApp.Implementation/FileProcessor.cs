@@ -19,15 +19,40 @@ namespace FileUploadApp.Implementation
 
         public async Task<IProcessingResult> Process(Stream stream, string originalFileName, string paramFileName)
         {
-            string inputFileExtension = Path.GetExtension(originalFileName);
+            string inputFileExtension = Path.GetExtension(originalFileName).TrimStart('.');
             string outputFileExtension = DEFAULT_TARGET_FORMAT;
             string inputFileName = string.IsNullOrWhiteSpace(paramFileName) ? Path.GetFileNameWithoutExtension(originalFileName) : paramFileName;
-            
-            IFileConverter converter =  _converterFactory.CreateConverter(inputFileExtension, DEFAULT_TARGET_FORMAT);
-            string content = converter.Convert(stream);
-            await _fileSystemManager.SaveFileToDiskAsync(content, outputFileExtension);
 
-            return null;
+            var result = new ProcessingResult();
+
+            try
+            {
+                IFileConverter converter = _converterFactory.CreateConverter(inputFileExtension, DEFAULT_TARGET_FORMAT);
+                
+                string content = converter.Convert(stream);
+
+                await _fileSystemManager.SaveFileToDiskAsync(content, inputFileName, outputFileExtension);
+
+                result.Success = true;
+            }
+            catch(NotSupportedException ex)
+            {
+                result.ErrorMessage = ex.Message;
+            }
+            catch (InvalidDataException ex)
+            {   
+                result.ErrorMessage = ex.Message;
+            }
+            catch (InvalidOperationException ex)
+            {
+                result.ErrorMessage = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                result.ErrorMessage = "An error has occured. Please try again later.";
+            }            
+
+            return result;
         }
     }
 }

@@ -1,23 +1,31 @@
 ﻿using FileUploadApp.Contracts.FileSystem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 
 namespace FileUploadApp.Implementation.FileSystem
 {
     public class FileSystemManager : IFileSystemManager
     {
-        public async Task SaveFileToDiskAsync(string content)
+        private readonly string _targetSaveDirectory;
+        public FileSystemManager(IOptions<FileSettings> fileSettings) 
         {
-
-            await File.WriteAllTextAsync("", content, Encoding.UTF8);
+            var workDir = Directory.GetCurrentDirectory();
+            _targetSaveDirectory = Path.GetFullPath(Path.Combine(workDir, fileSettings.Value.RelativeSaveDirectory));
         }
 
-        public Task SaveFileToDiskAsync(string content, string extension)
+        public async Task SaveFileToDiskAsync(string content, string fileName, string extension)
         {
-            throw new NotImplementedException();
+            //Creates directory if not exists
+            Directory.CreateDirectory(_targetSaveDirectory);
+
+            string fullFileName = $"{fileName}.{extension}";
+            string fullPath = Path.Combine(_targetSaveDirectory, fullFileName);
+
+            if(File.Exists(fullPath))
+            {
+                throw new InvalidOperationException("A file with the same name already exists.");
+            }
+
+            await File.WriteAllTextAsync(fullPath, content);
         }
     }
 }
