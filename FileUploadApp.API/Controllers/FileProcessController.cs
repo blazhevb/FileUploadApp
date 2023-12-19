@@ -25,7 +25,7 @@ namespace FileUploadApp.API.Controllers
             if(file == null || file.Length == 0)
             {
                 result.Success = false;
-                result.ErrorMessage = "No file uploaded.";
+                result.ErrorMessage = "No file uploaded or empty file.";
                 return Ok(result);
             }
 

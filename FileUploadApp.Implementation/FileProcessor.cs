@@ -19,11 +19,19 @@ namespace FileUploadApp.Implementation
 
         public async Task<IProcessingResult> Process(Stream stream, string originalFileName, string paramFileName)
         {
+            var result = new ProcessingResult();
+
             string inputFileExtension = Path.GetExtension(originalFileName).TrimStart('.');
+            if(string.IsNullOrEmpty(inputFileExtension))
+            {
+                result.Success = false;
+                result.ErrorMessage = "Invalid file extension";
+                return result;
+            }
+
             string outputFileExtension = DEFAULT_TARGET_FORMAT;
             string inputFileName = string.IsNullOrWhiteSpace(paramFileName) ? Path.GetFileNameWithoutExtension(originalFileName) : paramFileName;
 
-            var result = new ProcessingResult();
 
             try
             {
