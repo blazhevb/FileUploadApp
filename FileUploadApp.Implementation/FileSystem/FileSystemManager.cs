@@ -25,7 +25,14 @@ namespace FileUploadApp.Implementation.FileSystem
                 throw new InvalidOperationException("A file with the same name already exists.");
             }
 
-            await File.WriteAllTextAsync(fullPath, content);
+            try
+            {
+                await File.WriteAllTextAsync(fullPath, content);
+            }
+            catch 
+            { 
+                throw new InvalidOperationException($"Failed to save file: {fullFileName}");
+            }          
         }
     }
 }
