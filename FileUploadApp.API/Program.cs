@@ -8,7 +8,6 @@ using FileUploadApp.Implementation.FileSystem;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.Configure<FileSettings>(builder.Configuration.GetSection("FileSettings"));
 
 RegisterServices(builder.Services);
@@ -18,13 +17,25 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+if(builder.Environment.IsDevelopment())
+{
+    //Allow CORS in development, so we can access the API from our simple web page.
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("DevCorsPolicy", builder =>
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader());
+    });
+}
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors("DevCorsPolicy");
 }
 
 app.UseHttpsRedirection();
