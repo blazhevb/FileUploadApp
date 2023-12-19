@@ -1,0 +1,84 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: lightgrey;
+}
+
+h1 {
+    color: black;
+}
+
+#uploadForm {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+    #uploadForm label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    #uploadForm input[type="file"],
+    #uploadForm input[type="text"] {
+        border: 1px solid #ddd;
+        padding: 8px;
+        width: calc(100% - 16px);
+        margin-top: 5px;
+    }
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+#result {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 20px auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.errorMsg, .okMsg {
+    font-weight: bold;
+}
+
+.errorMsg {
+    color: red;
+}
+
+.okMsg {
+    color: green;
+}
+
+button.loading {
+    background-color: lightgray;
+    color: #666666;
+}
+
+    button.loading:after {
+        content: 'ing...';
+    }
