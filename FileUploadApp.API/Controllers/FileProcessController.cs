@@ -1,4 +1,5 @@
 ﻿using FileUploadApp.Contracts;
+using FileUploadApp.Implementation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FileUploadApp.API.Controllers
@@ -17,14 +18,16 @@ namespace FileUploadApp.API.Controllers
         }
 
         [HttpPost("Upload")]
-        public async Task<IActionResult> Upload(IFormFile file, string filename = null)
+        public async Task<IActionResult> Upload(IFormFile file, [FromForm] string filename = null)
         {
+            IProcessingResult result = new ProcessingResult();
+            
             if(file == null || file.Length == 0)
             {
-                return BadRequest("No file uploaded.");
+                result.Success = false;
+                result.ErrorMessage = "No file uploaded.";
+                return Ok(result);
             }
-
-            IProcessingResult result;
 
             using (var stream = file.OpenReadStream())
             {
